@@ -1,0 +1,7 @@
+{
+	"loader": "ts-node/esm",
+	"extension": ["ts"],
+	"spec": "src/backend/tests/**/*.test.ts",
+	"file": "src/backend/tests/setupTests.ts",
+	"timeout": 10000
+}

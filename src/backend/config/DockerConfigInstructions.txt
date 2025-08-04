@@ -1,0 +1,1 @@
+STORE firebase-service-account.json IN THIS FOLDER

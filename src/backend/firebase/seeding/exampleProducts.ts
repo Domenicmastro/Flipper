@@ -1,0 +1,525 @@
+import { type Product, type Location } from "../../../types/Product";
+import { USER_IDS, PRODUCT_IDS } from "./exampleConstants";
+import { Timestamp } from "firebase/firestore";
+
+export const locations: Location[] = [
+	{
+		label: "Vancouver, BC, Canada",
+		lat: 49.2827,
+		lng: 123.1207,
+		postalCode: "V6T 1Z4",
+		city: "Vancouver",
+		province: "British Columbia",
+		country: "Canada",
+	},
+	{
+		label: "Montreal, QC, Canada",
+		lat: 45.5019,
+		lng: -73.5674,
+		postalCode: "H3A 1A1",
+		city: "Montreal",
+		province: "Quebec",
+		country: "Canada",
+	},
+	{
+		label: "Toronto, ON, Canada",
+		lat: 43.651,
+		lng: -79.347,
+		postalCode: "M5H 2N2",
+		city: "Toronto",
+		province: "Ontario",
+		country: "Canada",
+	},
+	{
+		label: "Calgary, AB, Canada",
+		lat: 51.0447,
+		lng: -114.0719,
+		postalCode: "T2P 1J9",
+		city: "Calgary",
+		province: "Alberta",
+		country: "Canada",
+	},
+	{
+		label: "Ottawa, ON, Canada",
+		lat: 45.4215,
+		lng: -75.699,
+		postalCode: "K1P 1J1",
+		city: "Ottawa",
+		province: "Ontario",
+		country: "Canada",
+	},
+	{
+		label: "Halifax, NS, Canada",
+		lat: 44.6488,
+		lng: -63.5752,
+		postalCode: "B3J 3N8",
+		city: "Halifax",
+		province: "Nova Scotia",
+		country: "Canada",
+	},
+];
+
+export const products: Product[] = [
+	{
+		id: PRODUCT_IDS.PRODUCT_001,
+		name: "iPhone 14 Pro Max",
+		description:
+			"Excellent condition iPhone 14 Pro Max with 256GB storage. Includes original box, charger, and protective case. Battery health at 94%. No scratches or dents.",
+		images: [
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704386/uploads/kcijdh9hgvelp5rwpdec.jpg",
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704387/uploads/jasrxsyeacxxlj73aorq.jpg",
+		],
+		condition: "Like New",
+		price: 899.99,
+		sellerId: USER_IDS.USER_001,
+		location: locations[0],
+		priceComparisons: [
+			{ url: "https://apple.com/iphone-14-pro", price: "1099.00" },
+			{ url: "https://bestbuy.com/iphone-14-pro-max", price: "999.99" },
+		],
+		categories: ["Electronics & Appliances"],
+		tags: ["smartphone", "apple", "ios", "unlocked"],
+		status: "For Sale",
+		attributes: [{ category: "Color", value: "Black" }],
+
+		// Auction-related fields:
+		isAuction: true,
+		startingBid: 700.0,
+		currentBid: 750.0,
+		bidCount: 3,
+		auctionEndsAt: Timestamp.fromDate(new Date("2026-07-11T00:00:00Z")),
+		bidderId: USER_IDS.USER_002,
+	},
+	{
+		id: PRODUCT_IDS.PRODUCT_002,
+		name: "Vintage Leather Armchair",
+		description:
+			"Beautiful vintage brown leather armchair from the 1970s. Some minor wear on the arms but still very comfortable. Perfect for a study or living room.",
+		images: [
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704388/uploads/lqmfofdjnxwqinrtvbpj.jpg",
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704389/uploads/aquz4tibkvcnkknpuzur.webp",
+		],
+		condition: "Used",
+		price: 450.0,
+		sellerId: USER_IDS.USER_002,
+		location: locations[1],
+		priceComparisons: [],
+		categories: ["Furniture"],
+		tags: ["vintage", "leather", "armchair", "retro"],
+		status: "For Sale",
+		attributes: [{ category: "Color", value: "Brown" }],
+
+		// Auction-related fields:
+		isAuction: true,
+		startingBid: 300.0,
+		currentBid: 750.0,
+		bidCount: 5,
+		auctionEndsAt: Timestamp.fromDate(new Date("2026-07-11T00:00:00Z")),
+		bidderId: USER_IDS.USER_003,
+	},
+	{
+		id: PRODUCT_IDS.PRODUCT_003,
+		name: "Nike Air Max 270 - Women's",
+		description:
+			"Barely worn Nike Air Max 270 sneakers in white and pink. Size 8.5 US Women's. Only worn a few times, excellent condition.",
+		images: [
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704389/uploads/zbudyn6ahnj4tjznkwat.avif",
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704390/uploads/ltbwzgazllnyxiawmemm.webp",
+		],
+		condition: "Like New",
+		price: 85.0,
+		sellerId: USER_IDS.USER_003,
+		location: locations[2],
+		priceComparisons: [
+			{ url: "https://nike.com/air-max-270", price: "150.00" },
+			{ url: "https://footlocker.com/nike-air-max-270", price: "140.00" },
+			{ url: "https://gravitypope.com/nike-air-max-270", price: "170.00" },
+		],
+		categories: ["Women's Fashion"],
+		tags: ["nike", "sneakers", "athletic", "running"],
+		status: "Pending Sale",
+		attributes: [
+			{ category: "Color", value: "White" },
+			{ category: "Size", value: "M" },
+			{ category: "Gender", value: "Women" },
+		],
+	},
+	{
+		id: PRODUCT_IDS.PRODUCT_004,
+		name: "Baby Stroller - Chicco Bravo",
+		description:
+			"Chicco Bravo travel system stroller in excellent condition. Includes car seat base and infant insert. Very easy to fold and maneuver.",
+		images: [
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704391/uploads/ieda9b2c0dyrgfrm3ai9.jpg",
+		],
+		condition: "Like New",
+		price: 180.0,
+		sellerId: USER_IDS.USER_001,
+		location: locations[3],
+		priceComparisons: [
+			{ url: "https://chicco.com/bravo-travel-system", price: "299.99" },
+			{ url: "https://target.com/chicco-bravo-stroller", price: "279.99" },
+			{
+				url: "https://westcoastkids.com/chicco-bravo-stroller",
+				price: "379.99",
+			},
+		],
+		categories: ["Baby & Kids"],
+		tags: ["stroller", "baby", "travel system", "chicco"],
+		status: "For Sale",
+		attributes: [{ category: "Color", value: "Gray" }],
+	},
+	{
+		id: PRODUCT_IDS.PRODUCT_005,
+		name: "Mountain Bike - Trek X-Caliber 8",
+		description:
+			"2022 Trek X-Caliber 8 mountain bike, size Large. Great condition with minimal use. Perfect for trails and recreational riding.",
+		images: [
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704392/uploads/ngd4swkh99wlbnyq3f7w.jpg",
+		],
+		condition: "Used",
+		price: 750.0,
+		sellerId: USER_IDS.USER_001,
+		location: locations[4],
+		priceComparisons: [
+			{ url: "https://trek.com/x-caliber-8", price: "1299.99" },
+			{ url: "https://rei.com/trek-mountain-bike", price: "1199.00" },
+		],
+		categories: ["Sports & Outdoors"],
+		tags: ["mountain bike", "trek", "cycling", "outdoor"],
+		status: "For Sale",
+		attributes: [
+			{ category: "Color", value: "Blue" },
+			{ category: "Size", value: "L" },
+		],
+	},
+	{
+		id: PRODUCT_IDS.PRODUCT_006,
+		name: "PlayStation 5 Console",
+		description:
+			"PlayStation 5 console with disc drive. Includes one controller, all cables, and original packaging. Works perfectly.",
+		images: [
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704393/uploads/cmbvsyekahzmpgyrsnox.jpg",
+		],
+		condition: "New",
+		price: 499.99,
+		sellerId: USER_IDS.USER_001,
+		location: locations[5],
+		priceComparisons: [
+			{ url: "https://playstation.com/ps5", price: "499.99" },
+			{ url: "https://gamestop.com/playstation-5", price: "549.99" },
+		],
+		categories: ["Games & Hobbies"],
+		tags: ["playstation", "ps5", "gaming", "console"],
+		status: "Sold",
+		attributes: [{ category: "Color", value: "White" }],
+	},
+	{
+		id: PRODUCT_IDS.PRODUCT_007,
+		name: "Men's Wool Peacoat",
+		description:
+			"Classic navy wool peacoat, size Medium. Excellent quality and warmth. Perfect for fall and winter weather.",
+		images: [
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704395/uploads/kndcstgng2hi6eh2ea4p.webp",
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704395/uploads/zmk2u1sswznncyno0slq.jpg",
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704396/uploads/mp4ftjtulda99up60xe0.jpg",
+		],
+		condition: "Used",
+		price: 95.0,
+		sellerId: USER_IDS.USER_001,
+		location: locations[0],
+		priceComparisons: [
+			{ url: "https://jcrew.com/wool-peacoat", price: "298.00" },
+			{ url: "https://bananarepublic.com/peacoat", price: "249.99" },
+		],
+		categories: ["Men's Fashion"],
+		tags: ["coat", "wool", "peacoat", "winter"],
+		status: "For Sale",
+		attributes: [
+			{ category: "Color", value: "Blue" },
+			{ category: "Size", value: "M" },
+			{ category: "Gender", value: "Men" },
+		],
+	},
+	{
+		id: PRODUCT_IDS.PRODUCT_008,
+		name: "KitchenAid Stand Mixer",
+		description:
+			"KitchenAid Artisan 5-quart stand mixer in red. Includes dough hook, wire whip, and flat beater. Works like new.",
+		images: [
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704397/uploads/jsshpnbuanapmg39nnoh.jpg",
+		],
+		condition: "Like New",
+		price: 275.0,
+		sellerId: USER_IDS.USER_001,
+		location: locations[1],
+		priceComparisons: [
+			{ url: "https://kitchenaid.com/artisan-mixer", price: "379.99" },
+			{ url: "https://williams-sonoma.com/kitchenaid-mixer", price: "399.95" },
+		],
+		categories: ["Home & Garden"],
+		tags: ["kitchen", "mixer", "baking", "appliance"],
+		status: "For Sale",
+		attributes: [{ category: "Color", value: "Red" }],
+	},
+	{
+		id: PRODUCT_IDS.PRODUCT_009,
+		name: "Leather Handbag - Coach",
+		description:
+			"Authentic Coach leather handbag in black. Minor signs of use but still in great condition. Includes dust bag.",
+		images: [
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704398/uploads/lmjpkz6c3dwmsinx0m1x.webp",
+		],
+		condition: "Used",
+		price: 150.0,
+		sellerId: USER_IDS.USER_002,
+		location: locations[2],
+		priceComparisons: [
+			{ url: "https://coach.com/leather-handbag", price: "395.00" },
+		],
+		categories: ["Accessories"],
+		tags: ["handbag", "coach", "leather", "designer"],
+		status: "For Sale",
+		attributes: [
+			{ category: "Color", value: "Black" },
+			{ category: "Gender", value: "Women" },
+		],
+	},
+	{
+		id: PRODUCT_IDS.PRODUCT_010,
+		name: "Skincare Set - The Ordinary",
+		description:
+			"Bundle of The Ordinary skincare products including Niacinamide, Hyaluronic Acid, and Vitamin C serum. All products 80%+ full.",
+		images: [
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704399/uploads/si0slj65l2otndaqzbkl.jpg",
+		],
+		condition: "Used",
+		price: 25.0,
+		sellerId: USER_IDS.USER_003,
+		location: locations[3],
+		priceComparisons: [
+			{ url: "https://theordinary.com/skincare-set", price: "45.00" },
+			{ url: "https://sephora.com/the-ordinary-bundle", price: "42.00" },
+		],
+		categories: ["Health & Beauty"],
+		tags: ["skincare", "the ordinary", "serum", "beauty"],
+		status: "For Sale",
+		attributes: [{ category: "Size", value: "One Size" }],
+	},
+	{
+		id: PRODUCT_IDS.PRODUCT_011,
+		name: "Weber Genesis Gas Grill",
+		description:
+			"Weber Genesis II E-315 3-burner gas grill. Well-maintained with new grill grates. Perfect for backyard BBQs and family gatherings.",
+		images: [
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704400/uploads/pqscmb7kpzd7byoihwia.avif",
+		],
+		condition: "Used",
+		price: 425.0,
+		sellerId: USER_IDS.USER_003,
+		location: locations[4],
+		priceComparisons: [],
+		categories: ["Home & Garden"],
+		tags: ["grill", "bbq", "weber", "outdoor cooking"],
+		status: "For Sale",
+		attributes: [{ category: "Color", value: "Black" }],
+	},
+	{
+		id: PRODUCT_IDS.PRODUCT_012,
+		name: "Harry Potter Book Collection",
+		description:
+			"Complete Harry Potter hardcover book series (books 1-7). Excellent condition with minimal shelf wear. Perfect for collectors or first-time readers.",
+		images: [
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704401/uploads/on0ghppltofrjvlgwdvg.jpg",
+		],
+		condition: "Like New",
+		price: 85.0,
+		sellerId: USER_IDS.USER_001,
+		location: locations[5],
+		priceComparisons: [
+			{ url: "https://amazon.com/harry-potter-hardcover-set", price: "159.99" },
+			{
+				url: "https://barnesandnoble.com/harry-potter-collection",
+				price: "139.99",
+			},
+		],
+		categories: ["Books & Music"],
+		tags: ["books", "harry potter", "hardcover", "collection"],
+		status: "For Sale",
+		attributes: [{ category: "Size", value: "One Size" }],
+	},
+	{
+		id: PRODUCT_IDS.PRODUCT_013,
+		name: "Honda Civic 2018",
+		description:
+			"2018 Honda Civic LX Sedan, 85k miles. Well-maintained with regular oil changes. Clean title, no accidents. Great fuel economy.",
+		images: [
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704402/uploads/ch5wshfdrm51tvc1nqhj.avif",
+		],
+		condition: "Used",
+		price: 16500.0,
+		sellerId: USER_IDS.USER_001,
+		location: locations[0],
+		priceComparisons: [
+			{ url: "https://cars.com/honda-civic-lx", price: "17500.00" },
+		],
+		categories: ["Vehicles"],
+		tags: ["honda", "civic", "sedan", "reliable"],
+		status: "Pending Sale",
+		attributes: [{ category: "Color", value: "Gray" }],
+	},
+	{
+		id: PRODUCT_IDS.PRODUCT_014,
+		name: "Dyson V11 Vacuum Cleaner",
+		description:
+			"Dyson V11 Absolute cordless vacuum with multiple attachments. Excellent suction power and battery life. Like new condition.",
+		images: [
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704404/uploads/zrg8hbirssvcvcfkvkai.jpg",
+		],
+		condition: "Like New",
+		price: 380.0,
+		sellerId: USER_IDS.USER_001,
+		location: locations[1],
+		priceComparisons: [
+			{ url: "https://dyson.com/v11-absolute", price: "599.99" },
+			{ url: "https://bestbuy.com/dyson-v11-vacuum", price: "549.99" },
+		],
+		categories: ["Home & Garden"],
+		tags: ["vacuum", "dyson", "cordless", "cleaning"],
+		status: "For Sale",
+		attributes: [{ category: "Color", value: "Purple" }],
+	},
+	{
+		id: PRODUCT_IDS.PRODUCT_015,
+		name: "Adidas Ultraboost 22 - Men's",
+		description:
+			"Adidas Ultraboost 22 running shoes in white/black colorway. Size 10.5 US Men's. Lightly used with plenty of life left.",
+		images: [
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704405/uploads/gpvqnf8vfjznxibn31co.avif",
+		],
+		condition: "Used",
+		price: 110.0,
+		sellerId: USER_IDS.USER_001,
+		location: locations[2],
+		priceComparisons: [
+			{ url: "https://adidas.com/ultraboost-22", price: "190.00" },
+			{ url: "https://footlocker.com/adidas-ultraboost", price: "180.00" },
+		],
+		categories: ["Men's Fashion"],
+		tags: ["adidas", "ultraboost", "running", "sneakers"],
+		status: "For Sale",
+		attributes: [
+			{ category: "Color", value: "White" },
+			{ category: "Size", value: "L" },
+			{ category: "Gender", value: "Men" },
+		],
+	},
+	{
+		id: PRODUCT_IDS.PRODUCT_016,
+		name: "Convertible Crib - Graco",
+		description:
+			"Graco Benton 4-in-1 convertible crib in white. Converts to toddler bed, daybed, and full-size bed. Includes mattress and bedding set.",
+		images: [
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704405/uploads/gcgq5qdbk2d50miqvbqr.avif",
+		],
+		condition: "Like New",
+		price: 220.0,
+		sellerId: USER_IDS.USER_002,
+		location: locations[3],
+		priceComparisons: [],
+		categories: ["Baby & Kids"],
+		tags: ["crib", "convertible", "baby furniture", "graco"],
+		status: "For Sale",
+		attributes: [{ category: "Color", value: "White" }],
+	},
+	{
+		id: PRODUCT_IDS.PRODUCT_017,
+		name: "Nintendo Switch OLED",
+		description:
+			"Nintendo Switch OLED model with enhanced screen. Includes Joy-Con controllers, dock, and carrying case. Barely used.",
+		images: [
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704406/uploads/nroe3drdqm8bqfogmqby.jpg",
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704407/uploads/vmmxmsfdoxamoxjcuea9.jpg",
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704409/uploads/vfkpktacqsztk7mgnvip.avif",
+		],
+		condition: "Like New",
+		price: 320.0,
+		sellerId: USER_IDS.USER_002,
+		location: locations[4],
+		priceComparisons: [
+			{ url: "https://nintendo.com/switch-oled", price: "349.99" },
+			{ url: "https://gamestop.com/nintendo-switch-oled", price: "349.99" },
+		],
+		categories: ["Games & Hobbies"],
+		tags: ["nintendo", "switch", "gaming", "oled"],
+		status: "Sold",
+		attributes: [{ category: "Color", value: "Red" }],
+	},
+	{
+		id: PRODUCT_IDS.PRODUCT_018,
+		name: "Fender Stratocaster Electric Guitar",
+		description:
+			"Fender Player Stratocaster electric guitar in sunburst finish. Includes hard case and guitar strap. Great for beginners and experienced players.",
+		images: [
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704410/uploads/nvs3n38ntkp5zmayijrn.jpg",
+		],
+		condition: "Used",
+		price: 520.0,
+		sellerId: USER_IDS.USER_002,
+		location: locations[5],
+		priceComparisons: [
+			{ url: "https://guitarcenter.com/fender-stratocaster", price: "799.99" },
+		],
+		categories: ["Books & Music"],
+		tags: ["guitar", "fender", "stratocaster", "electric"],
+		status: "For Sale",
+		attributes: [{ category: "Color", value: "Yellow" }],
+	},
+	{
+		id: PRODUCT_IDS.PRODUCT_019,
+		name: "Zara Blazer - Women's",
+		description:
+			"Stylish black blazer from Zara, size Medium. Perfect for professional or casual wear. Excellent condition with no visible wear.",
+		images: [
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704411/uploads/xtpt0y558zf9cu95mztm.jpg",
+		],
+		condition: "Like New",
+		price: 55.0,
+		sellerId: USER_IDS.USER_003,
+		location: locations[0],
+		priceComparisons: [
+			{ url: "https://zara.com/women-blazer", price: "99.90" },
+			{ url: "https://hm.com/women-blazer", price: "79.99" },
+		],
+		categories: ["Women's Fashion"],
+		tags: ["blazer", "zara", "professional", "women"],
+		status: "For Sale",
+		attributes: [
+			{ category: "Color", value: "Black" },
+			{ category: "Size", value: "M" },
+			{ category: "Gender", value: "Women" },
+		],
+	},
+	{
+		id: PRODUCT_IDS.PRODUCT_020,
+		name: "Vintage Polaroid Camera",
+		description:
+			"Vintage Polaroid OneStep camera from the 1980s. Fully functional with original leather case. Great for instant photography enthusiasts.",
+		images: [
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704412/uploads/zs2vxtloory7n2arouje.jpg",
+			"https://res.cloudinary.com/dgcdv8a6w/image/upload/v1752704413/uploads/vywfbnifrjhgx6xpq97m.webp",
+		],
+		condition: "Used",
+		price: 75.0,
+		sellerId: USER_IDS.USER_001,
+		location: locations[1],
+		priceComparisons: [
+			{ url: "https://polaroid.com/vintage-camera", price: "129.99" },
+			{ url: "https://bhphotovideo.com/polaroid-onestep", price: "119.99" },
+		],
+		categories: ["Other"],
+		tags: ["camera", "polaroid", "vintage", "instant"],
+		status: "For Sale",
+		attributes: [{ category: "Color", value: "Brown" }],
+	},
+];
