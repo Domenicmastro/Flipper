@@ -1,7 +1,7 @@
 export async function getImageEmbedding(
 	imageUrl: string
 ): Promise<number[] | null> {
-	const res = await fetch("/api/image/embedding", {
+	const res = await fetch("http://localhost:3000/api/image/embedding", {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify({ imageUrl }),

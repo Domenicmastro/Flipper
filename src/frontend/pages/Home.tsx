@@ -27,6 +27,7 @@ import {
 	selectRecommendationsLoading,
 	selectRecommendationsError,
 } from "../redux/slices/recommendationsSlice";
+import LoadingWidgit from "../components/LoadingWidgit";
 
 export default function HomePage() {
 	const dispatch = useAppDispatch();
@@ -166,6 +167,10 @@ export default function HomePage() {
 			</div>
 		);
 	};
+
+	if (isImageSearchLoading) {
+		return <LoadingWidgit text="Searching by image..." />;
+	}
 
 	return (
 		<div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>

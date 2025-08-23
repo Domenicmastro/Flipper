@@ -39,7 +39,7 @@ export default function HomeSearchBar({
 	onImageSearchResults?: (results: any[]) => void;
 	onClearImageSearch?: () => void;
 	isImageSearchActive?: boolean;
-	setImageSearchLoading: (loading: boolean) => void;
+	setImageSearchLoading?: (loading: boolean) => void;
 }) {
 	const dispatch = useAppDispatch();
 	const filters = useAppSelector(selectFilters);
@@ -76,6 +76,7 @@ export default function HomeSearchBar({
 	});
 
 	const handleImageSearch = async (file: File) => {
+		if (!setImageSearchLoading || !onImageSearchResults) return;
 		try {
 			setImageSearchLoading(true);
 			const imageUrl = await uploadSingleImage(file);
@@ -125,7 +126,9 @@ export default function HomeSearchBar({
 					_hover={{ borderColor: "blue.300" }}
 					_focus={{ borderColor: "blue.500", boxShadow: "0 0 0 1px #3182ce" }}
 				/>
-				<ImageSearchButton onImageSelected={handleImageSearch} />
+				{onImageSearchResults && setImageSearchLoading && (
+					<ImageSearchButton onImageSelected={handleImageSearch} />
+				)}
 			</InputGroup>
 			{isImageSearchActive && onClearImageSearch && (
 				<Box mt={2} textAlign="right">

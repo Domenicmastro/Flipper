@@ -10,6 +10,13 @@ The app we've created is Flipper, a site to buy and sell used items. It uses Rea
 
 Flipper is a second-hand goods site, with a focus on product discoverability. From a seller's perspective, the site offers a user friendly but powerful interface to create new listings, and the ability to auction goods. From a buyer's perspective, the site includes a variety of filters to search for items, recommendation algorithm based off the users wishlist, and a swiping interface to scan through products to add to your wishlist.
 
+## Minimal Goals
+
+- COMPLETE: Browse and list items - description, price, category, condition (e.g., new, used, etc.)
+- COMPLETE: Filtering + Searching options (price, rating, category, location/distance etc.)
+- COMPLETE: User Login + profile
+- COMPLETE: Rate users based on interactions (e.g. 5 stars)
+
 ## Standard Goals
 
 - COMPLETE: Ability to auction items (real time or over a set period)
@@ -22,16 +29,16 @@ Flipper is a second-hand goods site, with a focus on product discoverability. Fr
 
 ## Stretch Goals
 
-- DROPPED: Auto-uploading item
-- DROPPED: Connection to Doordash API to hire deliverers for items, as well as payment processing for service
+- DROPPED: Auto-uploading item -- Dropped due to to lacking time and prioritization of bug fixes
+- DROPPED: Connection to Doordash API to hire deliverers for items, as well as payment processing for service -- Dropped due to logisitical issues of the feature (Handling cancelled orders, fake/scam orders, orders too large for doordash, etc). 
 - COMPLETE: Recommendation Algorithm
 
 ## Non-trivial Elements
 
 - COMPLETE: A complete product lifecycle, from listed (either for direct sale or auction), to wishlisted, to sold, to relisted
-- IN-TESTING: An interface for searching for products that rivals current market competitors (Facebook Marketplace, Kajiji), including image-based search and swiping through recommendations
+- COMPLETE: An interface for searching for products that rivals current market competitors (Facebook Marketplace, Kajiji), including image-based search and swiping through recommendations
 - COMPLETE: An extensive backend for both products and users to support various levels of categorization, location based searching, etc.
-- IN-DEVELOPMENT: An in-house messaging feature to allow users to organize sales without leaving the site.
+- COMPLETE: An in-house messaging feature to allow users to organize sales without leaving the site.
 
 ## XSS Security Assessment
 
@@ -46,8 +53,7 @@ To test Flipper's Security, we tried the OWASP Juice Shop XSS attack command: `<
 
 We also tried an XSS scanner, in case we had missed any inputs or injections. Both the manual test and the automated one found no points of entry, instead the text was just submitted as plaintext. This left some time for further study, so we continued to also investigate api attacks. Here Flipper has some vulnerabilities, for example while some user information is public by nature of the app (such as the user's provided name and email as a point of contact) our api uses a single endpoint to get user information, whereas we should have a public endpoint for other users and a private one for your own page. Note that this does not include user authentication information, as that is handled through Firebase and so is not shared in our own api endpoints.
 
-As we did not have any detected XSS vulnerabilities we have made no security specific changes this milestone. The suggested refactor above is a potential effort to be made in M5 depending on time and bug priority.
-
+As we did not have any detected XSS vulnerabilities we have made no security specific changes this milestone.
 ##
 
 _A complete bug list with labelled priorities can be found on [GitHub Issues](https://github.students.cs.ubc.ca/CPSC455-2025S/team29/issues)_
@@ -154,6 +160,25 @@ Milestone 4 has included many changes and improvements from M3 as we complete de
 - Fixing of most major bugs.
 - Adding test cases as needed.
 - Messaging service
+
+## Demo
+
+### Key Features
+
+- Product buying, selling, editing, updating functionality
+  ![alt text](image.png)
+- Basic searching and filtering, as well as searching by image
+  ![alt text](image-3.png)
+- Messaging users
+  ![alt text](image-1.png)
+- Auctioning service
+  ![alt text](image-2.png)
+- "Swipe" page and recommendation algorithm
+  ![alt text](image-5.png)
+
+## Milestone 5
+
+In this milestone, there were not any major changes. We mostly just worked on bug fixing.
 
 ### Test Suite
 
