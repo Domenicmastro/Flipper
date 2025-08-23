@@ -3,13 +3,11 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 export const firebaseConfig = {
-	apiKey: import.meta.env.FIREBASE_API_KEY,
+	apiKey: "AIzaSyAQrCOMJLrfCcfb7-mnzxrNwmMVOgm2kdM",
 	authDomain: "flipper-ae6d1.firebaseapp.com",
 	projectId: "flipper-ae6d1",
 	storageBucket: "flipper-ae6d1.firebasestorage.app",

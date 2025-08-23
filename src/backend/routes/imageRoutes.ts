@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config({ path: "../.env" }); // adjust path if needed
 const router = express.Router();
 
-const REPLICATE_API_TOKEN = import.meta.env.REPLICATE_API_TOKEN;
+const REPLICATE_API_TOKEN = process.env.REPLICATE_API_TOKEN;
 
 router.post("/embedding", async (req, res) => {
 	const { imageUrl } = req.body;
