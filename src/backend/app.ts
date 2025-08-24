@@ -17,12 +17,19 @@ const allowedOrigins = [
   "https://flipper.domenicosoftware.com"
 ];
 
-app.use(
-  cors({
-    origin: allowedOrigins,
-    credentials: true, // if you ever need cookies/auth headers
-  })
-);
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps, curl, Postman)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true, // allow cookies, authorization headers
+}));
 
 app.use(express.json());
 

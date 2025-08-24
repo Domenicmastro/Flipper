@@ -25,5 +25,8 @@ dist-ssr
 
 .env
 
+# ignore build artifacts
+*.d.ts
+
 # config
 src/backend/config/firebase-service-account.json
