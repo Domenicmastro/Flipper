@@ -41,10 +41,11 @@ app.use("/api/image", imageRoutes);
 console.log("bidRoutes is:", typeof bidRoutes);
 app.use("/api/bids", bidRoutes);
 
-const PORT = process.env.PORT || 3000;
+const PORT = parseInt(process.env.PORT || "8080", 10);
+const HOST = "0.0.0.0";
 
-app.listen(PORT, () => {
-	console.log(`Backend running at http://localhost:${PORT}`);
+app.listen(PORT, HOST, () => {
+  console.log(`Server running on http://${HOST}:${PORT}`);
 });
 
 export default app;
