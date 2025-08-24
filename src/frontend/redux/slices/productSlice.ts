@@ -12,7 +12,8 @@ export const isCategory = (value: string): value is Category => {
 	return Object.values(Category).includes(value as Category);
 };
 
-const PORT = 3000;
+// const PORT = 3000;
+const API_URL = import.meta.env.VITE_API_URL;
 
 export interface ProductsState {
 	products: Product[];
@@ -58,7 +59,7 @@ export const fetchProducts = createAsyncThunk(
 	"products/fetchProducts",
 	async (_, { rejectWithValue }) => {
 		try {
-			const response = await fetch(`http://localhost:${PORT}/api/products/`);
+			const response = await fetch(`${API_URL}/api/products/`);
 			const products = await response.json();
 			return products;
 		} catch (error: unknown) {
@@ -77,7 +78,7 @@ export const fetchProduct = createAsyncThunk<
 >("products/fetchProduct", async (productId: string, { rejectWithValue }) => {
 	try {
 		const response = await fetch(
-			`http://localhost:${PORT}/api/products/by-id/${productId}`
+			`${API_URL}/api/products/by-id/${productId}`
 		);
 		const product = await response.json();
 		return product;
@@ -93,7 +94,7 @@ export const addProductThunk = createAsyncThunk(
 	"products/addProduct",
 	async (product: ProductPayload, { rejectWithValue }) => {
 		try {
-			const response = await fetch(`http://localhost:${PORT}/api/products/`, {
+			const response = await fetch(`${API_URL}/api/products/`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -130,7 +131,7 @@ export const updateProductThunk = createAsyncThunk(
 	) => {
 		try {
 			const response = await fetch(
-				`http://localhost:${PORT}/api/products/by-id/${productId}`,
+				`${API_URL}/api/products/by-id/${productId}`,
 				{
 					method: "PATCH",
 					headers: {
@@ -160,7 +161,7 @@ export const deleteProductThunk = createAsyncThunk(
 	"products/deleteProduct",
 	async (productId: string, { rejectWithValue }) => {
 		try {
-			await fetch(`http://localhost:${PORT}/api/products/by-id/${productId}`, {
+			await fetch(`${API_URL}/api/products/by-id/${productId}`, {
 				method: "DELETE",
 			});
 			return productId;
@@ -181,7 +182,7 @@ export const markProductAsSoldThunk = createAsyncThunk(
 	) => {
 		try {
 			const response = await fetch(
-				`http://localhost:${PORT}/api/products/mark-as-sold/${productId}`,
+				`${API_URL}/api/products/mark-as-sold/${productId}`,
 				{
 					method: "PATCH",
 					headers: {
@@ -219,7 +220,7 @@ export const placeBidThunk = createAsyncThunk(
 	) => {
 		try {
 			const response = await fetch(
-				`http://localhost:${PORT}/api/products/place-bid/${productId}`,
+				`${API_URL}/api/products/place-bid/${productId}`,
 				{
 					method: "POST",
 					headers: {

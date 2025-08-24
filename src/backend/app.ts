@@ -10,7 +10,20 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
+const allowedOrigins = [
+  "http://localhost:5173", // Vite dev
+  "http://localhost:3000", // Next.js dev
+  "https://flipper.domenicosoftware.com"
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true, // if you ever need cookies/auth headers
+  })
+);
+
 app.use(express.json());
 
 app.use("/api/products", productRoutes);

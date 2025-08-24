@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { type Product } from "../../../types/Product";
 
-const PORT = 3000;
+//const PORT = 3000;
+const API_URL = import.meta.env.VITE_API_URL;
 
 export interface ProductBySellerState {
 	items: Product[];
@@ -19,7 +20,7 @@ export const fetchProductsBySeller = createAsyncThunk(
 	"products/fetchBySeller",
 	async (sellerId: string, { rejectWithValue }) => {
 		try {
-			const response = await fetch(`http://localhost:${PORT}/api/products/by-seller-id/${sellerId}`);
+			const response = await fetch(`${API_URL}/api/products/by-seller-id/${sellerId}`);
 			const products = await response.json();
 			return products;
 		} catch (error: unknown) {

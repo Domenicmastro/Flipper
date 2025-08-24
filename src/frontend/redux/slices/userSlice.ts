@@ -5,7 +5,8 @@ import { auth } from "@/backend/firebase/firebase";
 import { waitForAuthUser } from "@/utils/auth";
 import type { RootState } from '../store';
 
-const PORT = 3000;
+// const PORT = 3000;
+const API_URL = import.meta.env.VITE_API_URL;
 
 export interface UserState {
   users: User[];
@@ -57,7 +58,7 @@ export const fetchUserNameById = createAsyncThunk<
     if (!currentUser) return rejectWithValue("User not logged in");
 
     const token = await currentUser.getIdToken();
-    const res = await fetch(`http://localhost:${PORT}/api/users/by-id/${userId}`, {
+    const res = await fetch(`${API_URL}/api/users/by-id/${userId}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
 
@@ -78,7 +79,7 @@ export const fetchUserById = createAsyncThunk<User | null, string, { rejectValue
   async (userId, { rejectWithValue }) => {
     try {
       const firebaseUser = auth.currentUser;
-      const response = await fetch(`http://localhost:${PORT}/api/users/get-or-create/${userId}`, {
+      const response = await fetch(`${API_URL}/api/users/get-or-create/${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -123,7 +124,7 @@ export const fetchAllUsers = createAsyncThunk<User[], void, { rejectValue: strin
   'user/fetchAllUsers',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch(`http://localhost:${PORT}/api/users/`);
+      const response = await fetch(`${API_URL}/api/users/`);
       
       if (!response.ok) {
         const errorData = await response.json();
@@ -141,7 +142,7 @@ export const createNewUser = createAsyncThunk<void, Omit<User, 'joinedAt'>, { re
   'user/createNewUser',
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await fetch(`http://localhost:${PORT}/api/users/`, {
+      const response = await fetch(`${API_URL}/api/users/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ user: userData }),
@@ -165,7 +166,7 @@ export const deleteCurrentUser = createAsyncThunk<void, void, { rejectValue: str
       if (!currentUser) return rejectWithValue("User not logged in");
 
       const token = await currentUser.getIdToken();
-      const response = await fetch(`http://localhost:${PORT}/api/users/`, { 
+      const response = await fetch(`${API_URL}/api/users/`, { 
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -190,7 +191,7 @@ export const updateUserData = createAsyncThunk<
     if (!currentUser) return rejectWithValue("User not logged in");
 
     const token = await currentUser.getIdToken();
-    const response = await fetch(`http://localhost:${PORT}/api/users/by-id/${userId}`, {
+    const response = await fetch(`${API_URL}/api/users/by-id/${userId}`, {
       method: "PATCH",
       headers: { 
         "Content-Type": "application/json",
@@ -217,7 +218,7 @@ export const addProductToWishlist = createAsyncThunk<
 >('user/addProductToWishlist', async ({ userId, productId }, { rejectWithValue }) => {
   try {
     const token = await auth.currentUser?.getIdToken();
-    const res = await fetch(`http://localhost:${PORT}/api/users/wishlist/by-user-and-product-id/${userId}/${productId}`, {
+    const res = await fetch(`${API_URL}/api/users/wishlist/by-user-and-product-id/${userId}/${productId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
     });
@@ -240,7 +241,7 @@ export const removeProductFromWishlist = createAsyncThunk<
 >('user/removeProductFromWishlist', async ({ userId, productId }, { rejectWithValue }) => {
   try {
     const token = await auth.currentUser?.getIdToken();
-    const res = await fetch(`http://localhost:${PORT}/api/users/wishlist/by-user-and-product-id/${userId}/${productId}`, {
+    const res = await fetch(`${API_URL}/api/users/wishlist/by-user-and-product-id/${userId}/${productId}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
     });
@@ -260,7 +261,7 @@ export const fetchWishlistProducts = createAsyncThunk<Product[], string, { rejec
   'user/fetchWishlistProducts',
   async (userId, { rejectWithValue }) => {
     try {
-      const response = await fetch(`http://localhost:${PORT}/api/users/wishlist/by-user-id/${userId}`);
+      const response = await fetch(`${API_URL}/api/users/wishlist/by-user-id/${userId}`);
       
       if (!response.ok) {
         const errorData = await response.json();
@@ -284,7 +285,7 @@ export const addUserReview = createAsyncThunk<
     if (!currentUser) return rejectWithValue("User not logged in");
 
     const token = await currentUser.getIdToken();
-    const res = await fetch(`http://localhost:${PORT}/api/users/reviews/${userId}`, {
+    const res = await fetch(`${API_URL}/api/users/reviews/${userId}`, {
       method: "POST",
       headers: { 
         "Content-Type": "application/json",
@@ -314,7 +315,7 @@ export const updateUserListsOnSale = createAsyncThunk<
     if (!currentUser) return rejectWithValue("User not logged in");
 
     const token = await currentUser.getIdToken();
-    const response = await fetch(`http://localhost:${PORT}/api/users/update-lists-on-sale`, {
+    const response = await fetch(`${API_URL}/api/users/update-lists-on-sale`, {
       method: 'PATCH',
       headers: { 
         "Content-Type": "application/json",

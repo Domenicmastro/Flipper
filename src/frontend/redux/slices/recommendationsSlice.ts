@@ -3,7 +3,8 @@ import type { Product } from "../../../types";
 import type { RootState } from '../store';
 import { auth } from "@/backend/firebase/firebase";
 
-const PORT = 3000;
+// const PORT = 3000;
+const API_URL = import.meta.env.VITE_API_URL;
 
 export interface RecommendationsState {
   products: Product[];
@@ -30,7 +31,7 @@ export const fetchRecommendations = createAsyncThunk<
       
       const token = await auth.currentUser?.getIdToken();
       console.log("Token:", token)
-      const response = await fetch(`http://localhost:${PORT}/api/recommendations/${userId}`, {
+      const response = await fetch(`${API_URL}/api/recommendations/${userId}`, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`

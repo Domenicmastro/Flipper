@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
 import type {RootState} from "@/frontend/redux/store";
 
-const PORT = 3000;
+//const PORT = 3000;
+const API_URL = import.meta.env.VITE_API_URL;
 
 export interface Conversation {
     id: string;
@@ -36,7 +37,7 @@ export const fetchConversations = createAsyncThunk(
     'messages/fetchConversations',
     async (userId: string, { rejectWithValue }) => {
         try {
-            const res = await fetch(`http://localhost:${PORT}/api/messages/conversation/by-user-id/${userId}`);
+            const res = await fetch(`${API_URL}/api/messages/conversation/by-user-id/${userId}`);
             if (!res.ok) throw new Error('Failed to fetch conversations');
             return await res.json();
         } catch (err: unknown) {
@@ -49,7 +50,7 @@ export const fetchMessages = createAsyncThunk(
     'messages/fetchMessages',
     async (conversationId: string, { rejectWithValue }) => {
         try {
-            const res = await fetch(`http://localhost:${PORT}/api/messages/${conversationId}`);
+            const res = await fetch(`${API_URL}/api/messages/${conversationId}`);
             if (!res.ok) throw new Error('Failed to fetch messages');
             const messages = await res.json(); // Message[]
             return { conversationId, messages };
@@ -70,7 +71,7 @@ export const sendMessage = createAsyncThunk(
         { rejectWithValue }
     ) => {
         try {
-            const res = await fetch(`http://localhost:${PORT}/api/messages`, {
+            const res = await fetch(`${API_URL}/api/messages`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
